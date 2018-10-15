@@ -2,15 +2,33 @@
 <head>
 <!-- CSS -->
 <style type="text/css">
-	div {
+
+	div{
 		margin-bottom: 20px;
 	}
+
+	h1{
+		color:grey;
+	}
+
+table{
+	border-collapse: collapse;
+	width: 40%
+	border: 1px solid black;
+}
+
+th, td {
+  text-align: left;
+	padding: 15px;
+	border: 1px solid black;
+}
+
 </style>
 
 <!-- Data -->
 <script>
 
-// Don't copy this to any other places in this file. You can just use the "organizations" variable to do your assignment. 
+// Don't copy this to any other places in this file. You can just use the "organizations" variable to do your assignment.
 var organizations = [
 	 {
         "Region": "East Asia & Pacific",
@@ -19,7 +37,7 @@ var organizations = [
         "Organization Name": "200 Square",
         "Organization Type": "For-profit",
         "Sectors": "Housing, construction & real estate",
-        "Description": "200 Square is an online real estate agent in New Zealand.",        
+        "Description": "200 Square is an online real estate agent in New Zealand.",
         "City": "Wellington",
         "State/Region": "Wellington",
         "Founding Year": 2010,
@@ -34,7 +52,7 @@ var organizations = [
         "Organization Name": "21c Consultancy",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "21c is ICT innovation consultancy which advises international actors, institutions and governments around the world on technological trends which can affect the way they deliver services.",        
+        "Description": "21c is ICT innovation consultancy which advises international actors, institutions and governments around the world on technological trends which can affect the way they deliver services.",
         "City": "London",
         "State/Region": "",
         "Founding Year": 2015,
@@ -49,7 +67,7 @@ var organizations = [
         "Organization Name": "2GIS",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "2GIS is a city information service combined with a map. ",        
+        "Description": "2GIS is a city information service combined with a map. ",
         "City": "Novosibirsk",
         "State/Region": "Novosibirsk Oblast",
         "Founding Year": 1999,
@@ -64,7 +82,7 @@ var organizations = [
         "Organization Name": "2nd City Zoning",
         "Organization Type": "Nonprofit",
         "Sectors": "Housing, construction & real estate",
-        "Description": "An Open City App, 2nd City Zoning is an interactive map that lets you find out how your building is zoned, learn where to locate your business and explore zoning patterns throughout the city.",        
+        "Description": "An Open City App, 2nd City Zoning is an interactive map that lets you find out how your building is zoned, learn where to locate your business and explore zoning patterns throughout the city.",
         "City": "Chicago",
         "State/Region": "Illinois",
         "Founding Year": 2013,
@@ -94,7 +112,7 @@ var organizations = [
         "Organization Name": "360 Yield Center",
         "Organization Type": "For-profit",
         "Sectors": "Agriculture",
-        "Description": "Taking a 360-degree view of key yield-limiting variables, 360 Yield Center develops strategies for better-performing crops and better on-farm profits.",        
+        "Description": "Taking a 360-degree view of key yield-limiting variables, 360 Yield Center develops strategies for better-performing crops and better on-farm profits.",
         "City": "Morton",
         "State/Region": "Illinois",
         "Founding Year": 2014,
@@ -124,7 +142,7 @@ var organizations = [
         "Organization Name": "3Tier (Europe) ",
         "Organization Type": "For-profit",
         "Sectors": "Energy and climate",
-        "Description": "3TIER is a global environmental and industrial measurement company providing weather-driven renewable energy risk assessment and forecasting for wind, solar, and hydro power projects.",        
+        "Description": "3TIER is a global environmental and industrial measurement company providing weather-driven renewable energy risk assessment and forecasting for wind, solar, and hydro power projects.",
         "City": "Helsinki",
         "State/Region": "Uusimaa",
         "Founding Year": 2012,
@@ -139,7 +157,7 @@ var organizations = [
         "Organization Name": "5PSolutions",
         "Organization Type": "For-profit",
         "Sectors": "IT and geospatial",
-        "Description": "5PSolutions are artisans of mobile platforms.",       
+        "Description": "5PSolutions are artisans of mobile platforms.",
         "City": "Fairfax",
         "State/Region": "Virginia",
         "Founding Year": 2007,
@@ -154,7 +172,7 @@ var organizations = [
         "Organization Name": "AAA National",
         "Organization Type": "Other",
         "Sectors": "Transportation and logistics",
-        "Description": "AAA provides services such as travel, automotive, insurance, financial, and discounts.",        
+        "Description": "AAA provides services such as travel, automotive, insurance, financial, and discounts.",
         "City": "Irving",
         "State/Region": "Texas",
         "Founding Year": 1902,
@@ -184,7 +202,7 @@ var organizations = [
         "Organization Name": "ABRELATAM",
         "Organization Type": "Nonprofit",
         "Sectors": "Governance",
-        "Description": "ABRELATAM is an conference that seeks to accelerate the process of opening information through Open Data transparency and promote the Latin America.",        
+        "Description": "ABRELATAM is an conference that seeks to accelerate the process of opening information through Open Data transparency and promote the Latin America.",
         "City": "Santiago",
         "State/Region": "",
         "Founding Year": 2015,
@@ -192,7 +210,7 @@ var organizations = [
         "Type of Data Used": "",
         "profileID": "1687"
     }
-	
+
 ];
 </script>
 
@@ -200,17 +218,109 @@ var organizations = [
 
 <body>
 <!-- Feel free to add empty tags. Data shouldn't be here. -->
-	<div id="org_table"></div>
+<h1> Summary of Organizations </h1>
+<div id="org_table">
+	<table id="myTable">
+		</table>
+
+</div>
 
 <script>
 // outputs the first item of the organizations array. Just for testing.
-// console.log(organizations[0]); 
+// console.log(organizations[0]);
 console.log("test");
 
 // Your JavaScript code goes here
 
+//variables
+
+var nonprofits=0;
+var under10=0;
+var region=0;
+var transportation=0;
+var housingsector=0;
+
+//nonprofit organizations
+for(var i=0; i<organizations.length; i++) {
+	if(organizations[i]["Organization Type"]=="Nonprofit") {
+		console.log(organizations[i]);
+		nonprofits++;
+	}
+
+//under 10 years old
+	if(organizations[i]["Founding Year"]) {
+		var yr=(new Date()).getFullYear()-(organizations[i]["Founding Year"]);
+		if(yr<10)
+		under10++;
+	}
+
+//North American
+	if(organizations[i]["Region"]=="North America") {
+		region++;
+	}
+
+	//Transportation data type
+	if(organizations[i]["Type of Data Used"]) {
+		if (organizations[i]["Type of Data Used"].includes("Transportation"))
+		transportation++;
+	}
+
+	//Housing sector
+	if(organizations[i]["Sectors"]) {
+		if(organizations[i]["Sectors"].includes("Housing"))
+		housingsector++;
+	}
+}
+
+//table
+var x = document.getElementById('myTable');
+var row = x.createTHead().insertRow(0);
+
+row.insertCell(0).innerHTML = "<u><b>Organization Characteristic</u></b>";
+row.insertCell(1).innerHTML = "<u><b># of Organizations</u></b>";
+
+//row 1
+var r1=x.insertRow(1);
+var c1a=r1.insertCell(0);
+var c1b=r1.insertCell(1);
+
+c1a.innerHTML="Nonprofit";
+c1b.innerHTML=nonprofits;
+
+//row 2
+var r2=x.insertRow(2);
+var c2a=r2.insertCell(0);
+var c2b=r2.insertCell(1);
+
+c2a.innerHTML="< 10 yrs old";
+c2b.innerHTML=under10;
+
+//row 3
+var r3=x.insertRow(3);
+var c3a=r3.insertCell(0);
+var c3b=r3.insertCell(1);
+
+c3a.innerHTML="North American";
+c3b.innerHTML=region;
+
+//row 4
+var r4=x.insertRow(4);
+var c4a=r4.insertCell(0);
+var c4b=r4.insertCell(1);
+
+c4a.innerHTML="Transportation type of data";
+c4b.innerHTML=transportation;
+
+//row 5
+var r5=x.insertRow(5);
+var c5a=r5.insertCell(0);
+var c5b=r5.insertCell(1);
+
+c5a.innerHTML="Housing sector";
+c5b.innerHTML=housingsector;
 
 </script>
 
 </body>
+
 </html>
